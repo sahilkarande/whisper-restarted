@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TherapyConnect - Admin Dashboard</title>
+    <title>TherapyConnect - My Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -28,7 +28,7 @@
         /* Sidebar Styles */
         .sidebar {
             width: 280px;
-            background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             position: fixed;
             height: 100vh;
@@ -58,7 +58,7 @@
         .logo {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -72,42 +72,42 @@
             font-weight: 700;
         }
 
-        .admin-profile {
+        .user-profile {
             display: flex;
             align-items: center;
             gap: 15px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             margin-bottom: 10px;
         }
 
-        .admin-avatar {
+        .user-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
             font-weight: 600;
             color: white;
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.3);
         }
 
-        .admin-info h3 {
+        .user-info h3 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 4px;
         }
 
-        .admin-info p {
+        .user-info p {
             font-size: 13px;
             opacity: 0.8;
         }
 
-        .system-stats {
+        .user-stats {
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
@@ -163,7 +163,7 @@
         .nav-item.active {
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            border-left-color: #4facfe;
+            border-left-color: white;
         }
 
         .nav-item i {
@@ -179,7 +179,7 @@
 
         .nav-badge {
             margin-left: auto;
-            background: #ef4444;
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             padding: 2px 8px;
             border-radius: 10px;
@@ -252,33 +252,6 @@
             gap: 20px;
         }
 
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            padding: 10px 15px 10px 40px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            width: 300px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #4facfe;
-            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-        }
-
         .nav-icons {
             display: flex;
             align-items: center;
@@ -322,7 +295,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -337,11 +310,24 @@
         }
 
         .welcome-section {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             padding: 30px;
             border-radius: 20px;
             margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
         }
 
         .welcome-section h1 {
@@ -395,7 +381,7 @@
         .stat-card-icon.blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
         .stat-card-icon.green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
         .stat-card-icon.orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-        .stat-card-icon.red { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+        .stat-card-icon.purple { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
 
         .stat-card-value {
             font-size: 32px;
@@ -443,123 +429,118 @@
             margin-bottom: 20px;
         }
 
-        .users-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .users-table th,
-        .users-table td {
-            padding: 12px;
-            text-align: left;
+        .appointment-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
             border-bottom: 1px solid #f1f5f9;
         }
 
-        .users-table th {
-            background: #f8fafc;
+        .appointment-item:last-child {
+            border-bottom: none;
+        }
+
+        .appointment-time {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
             font-weight: 600;
-            color: #374151;
+            min-width: 80px;
+            text-align: center;
         }
 
-        .user-row {
-            transition: background 0.3s ease;
+        .appointment-details h4 {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 2px;
         }
 
-        .user-row:hover {
-            background: #f8fafc;
+        .appointment-details p {
+            font-size: 12px;
+            color: #64748b;
         }
 
-        .user-info {
+        .therapist-card {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            margin-bottom: 15px;
         }
 
-        .user-avatar-small {
-            width: 35px;
-            height: 35px;
+        .therapist-avatar {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 20px;
         }
 
-        .status-badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
+        .therapist-info h4 {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
         }
 
-        .status-active {
-            background: #dcfce7;
-            color: #166534;
+        .therapist-info p {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 8px;
         }
 
-        .status-inactive {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        .action-btn {
-            background: none;
-            border: none;
-            color: #4facfe;
-            cursor: pointer;
-            font-size: 14px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .action-btn:hover {
-            background: #f0f9ff;
-        }
-
-        .alert-item {
+        .rating {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid #f1f5f9;
+            gap: 5px;
         }
 
-        .alert-item:last-child {
-            border-bottom: none;
+        .stars {
+            color: #fbbf24;
         }
 
-        .alert-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 8px;
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: white;
+            margin-bottom: 8px;
         }
 
-        .alert-icon.warning { background: #f59e0b; }
-        .alert-icon.error { background: #ef4444; }
-        .alert-icon.info { background: #3b82f6; }
-
-        .alert-content {
-            flex: 1;
-        }
-
-        .alert-title {
+        .progress-label {
             font-weight: 600;
             color: #1e293b;
-            margin-bottom: 2px;
         }
 
-        .alert-time {
-            font-size: 12px;
+        .progress-value {
+            font-size: 14px;
             color: #64748b;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
         }
 
         /* Responsive Design */
@@ -587,10 +568,6 @@
             .dashboard-content {
                 padding: 20px;
             }
-
-            .search-box input {
-                width: 200px;
-            }
         }
     </style>
 </head>
@@ -601,26 +578,26 @@
             <div class="sidebar-header">
                 <div class="logo-section">
                     <div class="logo">TC</div>
-                    <div class="logo-text">Admin Panel</div>
+                    <div class="logo-text">TherapyConnect</div>
                 </div>
                 
-                <div class="admin-profile">
-                    <div class="admin-avatar">AD</div>
-                    <div class="admin-info">
-                        <h3>Admin User</h3>
-                        <p>System Administrator</p>
-                        <div class="system-stats">
+                <div class="user-profile">
+                    <div class="user-avatar">JS</div>
+                    <div class="user-info">
+                        <h3>John Smith</h3>
+                        <p>Patient</p>
+                        <div class="user-stats">
                             <div class="stat-item">
-                                <span class="stat-number">156</span>
-                                <span class="stat-label">Users</span>
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Sessions</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-number">24</span>
-                                <span class="stat-label">Therapists</span>
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Months</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-number">99.9%</span>
-                                <span class="stat-label">Uptime</span>
+                                <span class="stat-number">85%</span>
+                                <span class="stat-label">Progress</span>
                             </div>
                         </div>
                     </div>
@@ -629,53 +606,52 @@
 
             <nav class="sidebar-nav">
                 <div class="nav-section">
-                    <div class="nav-title">Overview</div>
+                    <div class="nav-title">Personal</div>
                     <a href="#" class="nav-item active">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
+                        <i class="fas fa-home"></i>
+                        <span>My Dashboard</span>
                     </a>
                     <a href="#" class="nav-item">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Analytics</span>
+                        <i class="fas fa-user"></i>
+                        <span>My Profile</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>System Alerts</span>
-                        <span class="nav-badge">5</span>
-                    </a>
-                </div>
-
-                <div class="nav-section">
-                    <div class="nav-title">User Management</div>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-users"></i>
-                        <span>All Users</span>
-                        <span class="nav-badge">156</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user-md"></i>
-                        <span>Therapists</span>
-                        <span class="nav-badge">24</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Add New User</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user-shield"></i>
-                        <span>Permissions</span>
-                    </a>
-                </div>
-
-                <div class="nav-section">
-                    <div class="nav-title">System</div>
                     <a href="#" class="nav-item">
                         <i class="fas fa-calendar-alt"></i>
-                        <span>Appointments</span>
+                        <span>My Appointments</span>
+                        <span class="nav-badge">2</span>
                     </a>
                     <a href="#" class="nav-item">
-                        <i class="fas fa-dollar-sign"></i>
-                        <span>Billing</span>
+                        <i class="fas fa-video"></i>
+                        <span>My Sessions</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-title">Health</div>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>My Progress</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-file-medical"></i>
+                        <span>My Records</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-pills"></i>
+                        <span>Medications</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Wellness</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-title">Support</div>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-comments"></i>
+                        <span>Messages</span>
+                        <span class="nav-badge">3</span>
                     </a>
                     <a href="#" class="nav-item">
                         <i class="fas fa-cog"></i>
@@ -698,238 +674,154 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="breadcrumb">
-                        <a href="#">Admin</a>
+                        <a href="#">Home</a>
                         <i class="fas fa-chevron-right"></i>
-                        <span>Dashboard</span>
+                        <span>My Dashboard</span>
                     </div>
                 </div>
 
                 <div class="nav-right">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search users, therapists...">
-                    </div>
-
                     <div class="nav-icons">
                         <button class="nav-icon">
                             <i class="fas fa-bell"></i>
-                            <span class="notification-badge">5</span>
+                            <span class="notification-badge">2</span>
                         </button>
                         <button class="nav-icon">
                             <i class="fas fa-envelope"></i>
-                            <span class="notification-badge">12</span>
+                            <span class="notification-badge">3</span>
                         </button>
                     </div>
 
-                    <div class="profile-pic">AD</div>
+                    <div class="profile-pic">JS</div>
                 </div>
             </header>
 
             <!-- Dashboard Content -->
             <div class="dashboard-content">
                 <div class="welcome-section">
-                    <h1>System Overview</h1>
-                    <p>Monitor and manage your TherapyConnect platform</p>
+                    <h1>Welcome back, John!</h1>
+                    <p>Continue your journey to better mental health. You're doing great!</p>
                 </div>
 
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-card-header">
                             <div class="stat-card-icon blue">
-                                <i class="fas fa-users"></i>
+                                <i class="fas fa-calendar-check"></i>
                             </div>
                         </div>
-                        <div class="stat-card-value">156</div>
-                        <div class="stat-card-label">Total Users</div>
+                        <div class="stat-card-value">12</div>
+                        <div class="stat-card-label">Total Sessions</div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-card-header">
                             <div class="stat-card-icon green">
-                                <i class="fas fa-user-md"></i>
+                                <i class="fas fa-clock"></i>
                             </div>
                         </div>
-                        <div class="stat-card-value">24</div>
-                        <div class="stat-card-label">Active Therapists</div>
+                        <div class="stat-card-value">2</div>
+                        <div class="stat-card-label">Upcoming Sessions</div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-card-header">
                             <div class="stat-card-icon orange">
-                                <i class="fas fa-calendar-check"></i>
+                                <i class="fas fa-chart-line"></i>
                             </div>
                         </div>
-                        <div class="stat-card-value">342</div>
-                        <div class="stat-card-label">Sessions Today</div>
+                        <div class="stat-card-value">85%</div>
+                        <div class="stat-card-label">Progress Score</div>
                     </div>
 
                     <div class="stat-card">
                         <div class="stat-card-header">
-                            <div class="stat-card-icon red">
-                                <i class="fas fa-exclamation-triangle"></i>
+                            <div class="stat-card-icon purple">
+                                <i class="fas fa-trophy"></i>
                             </div>
                         </div>
-                        <div class="stat-card-value">5</div>
-                        <div class="stat-card-label">System Alerts</div>
+                        <div class="stat-card-value">7</div>
+                        <div class="stat-card-label">Goals Achieved</div>
                     </div>
                 </div>
 
                 <div class="content-grid">
                     <div class="main-panel">
-                        <h2 class="section-title">Recent Users</h2>
+                        <h2 class="section-title">My Progress Overview</h2>
                         
-                        <table class="users-table">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Last Active</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">JS</div>
-                                            <div>
-                                                <div style="font-weight: 600;">John Smith</div>
-                                                <div style="font-size: 12px; color: #64748b;">john@email.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Patient</td>
-                                    <td><span class="status-badge status-active">Active</span></td>
-                                    <td>2 hours ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">DR</div>
-                                            <div>
-                                                <div style="font-weight: 600;">Dr. Sarah Johnson</div>
-                                                <div style="font-size: 12px; color: #64748b;">sarah@therapyconnect.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Therapist</td>
-                                    <td><span class="status-badge status-active">Active</span></td>
-                                    <td>1 hour ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">EW</div>
-                                            <div>
-                                                <div style="font-weight: 600;">Emma Wilson</div>
-                                                <div style="font-size: 12px; color: #64748b;">emma@email.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Patient</td>
-                                    <td><span class="status-badge status-active">Active</span></td>
-                                    <td>3 hours ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">MB</div>
-                                            <div>
-                                                <div style="font-weight: 600;">Michael Brown</div>
-                                                <div style="font-size: 12px; color: #64748b;">michael@email.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Patient</td>
-                                    <td><span class="status-badge status-inactive">Inactive</span></td>
-                                    <td>2 days ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span class="progress-label">Anxiety Management</span>
+                                <span class="progress-value">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span class="progress-label">Sleep Quality</span>
+                                <span class="progress-value">72%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72%"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span class="progress-label">Mood Stability</span>
+                                <span class="progress-value">90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress-item">
+                            <div class="progress-header">
+                                <span class="progress-label">Social Confidence</span>
+                                <span class="progress-value">68%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 68%"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="side-panel">
                         <div class="panel-card">
-                            <h3 class="section-title">System Alerts</h3>
-                            
-                            <div class="alert-item">
-                                <div class="alert-icon error">
-                                    <i class="fas fa-exclamation"></i>
-                                </div>
-                                <div class="alert-content">
-                                    <div class="alert-title">Server Load High</div>
-                                    <div class="alert-time">5 minutes ago</div>
-                                </div>
-                            </div>
-
-                            <div class="alert-item">
-                                <div class="alert-icon warning">
-                                    <i class="fas fa-triangle-exclamation"></i>
-                                </div>
-                                <div class="alert-content">
-                                    <div class="alert-title">Payment Failed</div>
-                                    <div class="alert-time">1 hour ago</div>
-                                </div>
-                            </div>
-
-                            <div class="alert-item">
-                                <div class="alert-icon info">
-                                    <i class="fas fa-info"></i>
-                                </div>
-                                <div class="alert-content">
-                                    <div class="alert-title">New User Registration</div>
-                                    <div class="alert-time">2 hours ago</div>
+                            <h3 class="section-title">My Therapist</h3>
+                            <div class="therapist-card">
+                                <div class="therapist-avatar">DR</div>
+                                <div class="therapist-info">
+                                    <h4>Dr. Sarah Johnson</h4>
+                                    <p>Licensed Clinical Psychologist</p>
+                                    <div class="rating">
+                                        <div class="stars">★★★★★</div>
+                                        <span>4.9</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="panel-card">
-                            <h3 class="section-title">Quick Stats</h3>
+                            <h3 class="section-title">Upcoming Sessions</h3>
                             
-                            <div style="margin-bottom: 15px;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                    <span style="font-size: 14px; color: #64748b;">Active Sessions</span>
-                                    <span style="font-weight: 600;">89%</span>
-                                </div>
-                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px;">
-                                    <div style="height: 100%; width: 89%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 3px;"></div>
+                            <div class="appointment-item">
+                                <div class="appointment-time">Today<br>2:00 PM</div>
+                                <div class="appointment-details">
+                                    <h4>Therapy Session</h4>
+                                    <p>Video call with Dr. Johnson</p>
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 15px;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                    <span style="font-size: 14px; color: #64748b;">System Health</span>
-                                    <span style="font-weight: 600;">95%</span>
-                                </div>
-                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px;">
-                                    <div style="height: 100%; width: 95%; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 3px;"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                    <span style="font-size: 14px; color: #64748b;">Storage Used</span>
-                                    <span style="font-weight: 600;">67%</span>
-                                </div>
-                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px;">
-                                    <div style="height: 100%; width: 67%; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 3px;"></div>
+                            <div class="appointment-item">
+                                <div class="appointment-time">Thu<br>10:00 AM</div>
+                                <div class="appointment-details">
+                                    <h4>Follow-up Session</h4>
+                                    <p>Progress review meeting</p>
                                 </div>
                             </div>
                         </div>
@@ -976,19 +868,6 @@
                 
                 console.log('Navigation clicked:', this.querySelector('span').textContent);
             });
-        });
-
-        // Action button clicks
-        document.querySelectorAll('.action-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                console.log('Action clicked:', this.textContent);
-                alert(`${this.textContent} action would be implemented here!`);
-            });
-        });
-
-        // Search functionality
-        document.querySelector('.search-box input').addEventListener('input', function(e) {
-            console.log('Admin search query:', e.target.value);
         });
     </script>
 </body>
