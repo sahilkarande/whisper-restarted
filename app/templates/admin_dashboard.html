@@ -18,11 +18,15 @@
             background: #f8fafc;
             color: #334155;
             overflow-x: hidden;
+            padding: 30px;
+            min-height: 100vh;
         }
 
         .dashboard-container {
             display: flex;
             min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Sidebar Styles */
@@ -591,6 +595,27 @@
             .search-box input {
                 width: 200px;
             }
+
+            body {
+                padding: 20px;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            table {
+                min-width: 600px;
+            }
+            
+            th, td {
+                padding: 15px 10px;
+                font-size: 14px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -727,213 +752,37 @@
 
             <!-- Dashboard Content -->
             <div class="dashboard-content">
-                <div class="welcome-section">
-                    <h1>System Overview</h1>
-                    <p>Monitor and manage your TherapyConnect platform</p>
+                <div class="header">
+                    <div class="logo">TC</div>
+                    <h1>Admin Dashboard</h1>
+                    <p class="subtitle">User Management</p>
                 </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-card-header">
-                            <div class="stat-card-icon blue">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                        <div class="stat-card-value">156</div>
-                        <div class="stat-card-label">Total Users</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-card-header">
-                            <div class="stat-card-icon green">
-                                <i class="fas fa-user-md"></i>
-                            </div>
-                        </div>
-                        <div class="stat-card-value">24</div>
-                        <div class="stat-card-label">Active Therapists</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-card-header">
-                            <div class="stat-card-icon orange">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                        </div>
-                        <div class="stat-card-value">342</div>
-                        <div class="stat-card-label">Sessions Today</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-card-header">
-                            <div class="stat-card-icon red">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                        </div>
-                        <div class="stat-card-value">5</div>
-                        <div class="stat-card-label">System Alerts</div>
-                    </div>
-                </div>
-
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <h2 class="section-title">Recent Users</h2>
-                        
-                        <table class="users-table">
-                            <thead>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
                                 <tr>
-                                    <th>User</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Last Active</th>
-                                    <th>Actions</th>
+                                    <td>{{ user.full_name }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.phone }}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">JS</div>
-                                            <div>
-                                                <div style="font-weight: 600;">John Smith</div>
-                                                <div style="font-size: 12px; color: #64748b;">john@email.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Patient</td>
-                                    <td><span class="status-badge status-active">Active</span></td>
-                                    <td>2 hours ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="4" class="no-users">No users found</td>
                                 </tr>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">DR</div>
-                                            <div>
-                                                <div style="font-weight: 600;">Dr. Sarah Johnson</div>
-                                                <div style="font-size: 12px; color: #64748b;">sarah@therapyconnect.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Therapist</td>
-                                    <td><span class="status-badge status-active">Active</span></td>
-                                    <td>1 hour ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">EW</div>
-                                            <div>
-                                                <div style="font-weight: 600;">Emma Wilson</div>
-                                                <div style="font-size: 12px; color: #64748b;">emma@email.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Patient</td>
-                                    <td><span class="status-badge status-active">Active</span></td>
-                                    <td>3 hours ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr class="user-row">
-                                    <td>
-                                        <div class="user-info">
-                                            <div class="user-avatar-small">MB</div>
-                                            <div>
-                                                <div style="font-weight: 600;">Michael Brown</div>
-                                                <div style="font-size: 12px; color: #64748b;">michael@email.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Patient</td>
-                                    <td><span class="status-badge status-inactive">Inactive</span></td>
-                                    <td>2 days ago</td>
-                                    <td>
-                                        <button class="action-btn">View</button>
-                                        <button class="action-btn">Edit</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="side-panel">
-                        <div class="panel-card">
-                            <h3 class="section-title">System Alerts</h3>
-                            
-                            <div class="alert-item">
-                                <div class="alert-icon error">
-                                    <i class="fas fa-exclamation"></i>
-                                </div>
-                                <div class="alert-content">
-                                    <div class="alert-title">Server Load High</div>
-                                    <div class="alert-time">5 minutes ago</div>
-                                </div>
-                            </div>
-
-                            <div class="alert-item">
-                                <div class="alert-icon warning">
-                                    <i class="fas fa-triangle-exclamation"></i>
-                                </div>
-                                <div class="alert-content">
-                                    <div class="alert-title">Payment Failed</div>
-                                    <div class="alert-time">1 hour ago</div>
-                                </div>
-                            </div>
-
-                            <div class="alert-item">
-                                <div class="alert-icon info">
-                                    <i class="fas fa-info"></i>
-                                </div>
-                                <div class="alert-content">
-                                    <div class="alert-title">New User Registration</div>
-                                    <div class="alert-time">2 hours ago</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-card">
-                            <h3 class="section-title">Quick Stats</h3>
-                            
-                            <div style="margin-bottom: 15px;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                    <span style="font-size: 14px; color: #64748b;">Active Sessions</span>
-                                    <span style="font-weight: 600;">89%</span>
-                                </div>
-                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px;">
-                                    <div style="height: 100%; width: 89%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 3px;"></div>
-                                </div>
-                            </div>
-
-                            <div style="margin-bottom: 15px;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                    <span style="font-size: 14px; color: #64748b;">System Health</span>
-                                    <span style="font-weight: 600;">95%</span>
-                                </div>
-                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px;">
-                                    <div style="height: 100%; width: 95%; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 3px;"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                    <span style="font-size: 14px; color: #64748b;">Storage Used</span>
-                                    <span style="font-weight: 600;">67%</span>
-                                </div>
-                                <div style="height: 6px; background: #f1f5f9; border-radius: 3px;">
-                                    <div style="height: 100%; width: 67%; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 3px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
