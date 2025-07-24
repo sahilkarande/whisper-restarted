@@ -1,14 +1,17 @@
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String, Boolean, TIMESTAMP, func
+from database import Base  # Make sure database.py has declarative_base()
 
-db = SQLAlchemy()
+class User(Base):
+    __tablename__ = "users"
 
-class User(db.Model):
-    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True, index=True)
+    full_name = Column(String(100), nullable=False)
+    username = Column(String(50), unique=True, nullable=False, index=True)
+    email = Column(String(100), unique=True, nullable=False, index=True)
+    phone = Column(String(15), nullable=True)
+    password_hash = Column(String(255), nullable=False)
+    is_admin = Column(Boolean, default=False)
+    created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
 
-    id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(120), nullable=False)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    phone = db.Column(db.String(20), nullable=False)
-    password = db.Column(db.String(255), nullable=False)
-    is_admin = db.Column(db.Boolean, default=False)
+    def __repr__(self):
+        return f"<User {self.username} - {'Admin' if self.is_admin else 'User'}>"

@@ -1,8 +1,21 @@
-flask
-fastapi
-uvicorn
-sqlalchemy
-flask_sqlalchemy
-pymysql
-python-multipart
-werkzeug
+# Flask dependencies
+Flask==2.3.3
+Flask-Bcrypt==1.0.1
+Flask-SQLAlchemy==3.1.1
+
+# FastAPI and Pydantic
+fastapi==0.111.0
+uvicorn==0.29.0
+pydantic==2.7.1
+
+# WSGI support to mount Flask inside FastAPI
+werkzeug==3.0.3
+python-multipart==0.0.9
+fastapi[all]
+
+# MySQL connector for SQLAlchemy
+pymysql==1.1.0
+SQLAlchemy==2.0.30
+
+# JWT support (optional, if using token auth)
+PyJWT==2.8.0

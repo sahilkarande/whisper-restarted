@@ -27,7 +27,7 @@
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             text-align: center;
         }
@@ -58,44 +58,53 @@
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 20px;
+            text-align: left;
         }
 
         .user-info p {
             font-size: 16px;
-            color: #64748b;
-            margin-bottom: 10px;
+            color: #374151;
+            margin-bottom: 12px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-
-        .user-info p:last-child {
-            margin-bottom: 0;
         }
 
         .label {
             font-weight: 600;
-            color: #374151;
         }
 
         .value {
-            color: #4facfe;
+            color: #0ea5e9;
             font-weight: 500;
+        }
+
+        .logout-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #dc2626;
         }
 
         @media (max-width: 480px) {
             .dashboard-container {
                 padding: 30px 20px;
             }
-            
+
             h2 {
                 font-size: 24px;
             }
-            
+
             .user-info p {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 5px;
             }
         }
     </style>
@@ -103,10 +112,14 @@
 <body>
     <div class="dashboard-container">
         <div class="logo">TC</div>
-        
+
         <h2>Welcome, {{ user.full_name }}</h2>
-        
+
         <div class="user-info">
+            <p>
+                <span class="label">Username:</span>
+                <span class="value">{{ user.username }}</span>
+            </p>
             <p>
                 <span class="label">Email:</span>
                 <span class="value">{{ user.email }}</span>
@@ -116,6 +129,10 @@
                 <span class="value">{{ user.phone }}</span>
             </p>
         </div>
+
+        <form method="post" action="{{ url_for('logout') }}">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
     </div>
 </body>
 </html>

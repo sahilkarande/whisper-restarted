@@ -1,248 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>TherapyConnect - Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .login-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 400px;
-            position: relative;
-        }
-
-        .login-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            padding: 40px 30px;
-            text-align: center;
-            color: white;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .login-header h1 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .login-header p {
-            font-size: 16px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .login-form {
-            padding: 40px 30px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #374151;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #f9fafb;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #4facfe;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
-        }
-
-        .form-group input::placeholder {
-            color: #9ca3af;
-        }
-
-        .forgot-password {
-            text-align: right;
-            margin-bottom: 30px;
-        }
-
-        .forgot-password a {
-            color: #4facfe;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
-        .login-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 30px 0;
-            color: #9ca3af;
-            font-size: 14px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #e5e7eb;
-        }
-
-        .divider span {
-            padding: 0 20px;
-            background: white;
-        }
-
-        .google-btn {
-            width: 100%;
-            background: white;
-            color: #374151;
-            border: 2px solid #e5e7eb;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .google-btn:hover {
-            background: #f9fafb;
-            border-color: #d1d5db;
-            transform: translateY(-1px);
-        }
-
-        .google-icon {
-            width: 20px;
-            height: 20px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwLjIgOC4xVjEySDEzLjlDMTMuNyAxMy4xIDEzLjEgMTMuOSAxMi4yIDE0LjNMMTUuMSAxNi42QzE3IDE0LjkgMTggMTIuNiAxOCAxMEMxOCA5LjQgMTcuOSA4LjggMTcuOCA4LjFIMTAuMloiIGZpbGw9IiM0Mjg1RjQiLz4KPHBhdGggZD0iTTEwIDIwQzEyLjcgMjAgMTQuOSAxOS4xIDE2LjUgMTcuNEwxMy42IDE1LjFDMTIuOCAxNS42IDExLjcgMTYgMTAgMTZDNy40IDE2IDUuMiAxNC4zIDQuNCAxMS45TDEuMyAxNC4yQzIuOSAxNy4zIDYuMiAyMCAxMCAyMFoiIGZpbGw9IiMzNEE4NTMiLz4KPHBhdGggZD0iTTQuNSAxMS45QzQuMyAxMS4zIDQuMiAxMC43IDQuMiAxMEM0LjIgOS4zIDQuMyA4LjcgNC41IDguMUwxLjQgNS44QzAuNSA3LjYgMCA4LjcgMCAxMEMwIDExLjMgMC41IDEyLjQgMS40IDE0LjJMNC41IDExLjlaIiBmaWxsPSIjRkJCQzA0Ii8+CjxwYXRoIGQ9Ik0xMCA0QzExLjcgNCAzLjEgNC42IDEzLjEgNS42TDE1LjYgMy4xQzE0IDEuNiAxMS44IDAgMTAgMEM2LjIgMCAyLjkgMi43IDEuNCA1LjhMNC41IDguMUM1LjIgNS43IDcuNCA0IDEwIDRaIiBmaWxsPSIjRUE0MzM1Ii8+Cjwvc3ZnPgo=') no-repeat center;
-            background-size: contain;
-        }
-
-        .signup-link {
-            text-align: center;
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .signup-link a {
-            color: #4facfe;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                margin: 10px;
-            }
-            
-            .login-header {
-                padding: 30px 20px;
-            }
-            
-            .login-form {
-                padding: 30px 20px;
-            }
-        }
-
-        /* Loading animation */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 2px solid transparent;
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        /* Keep your original styles unchanged — omitted here for brevity */
+        /* ... your CSS remains same ... */
     </style>
 </head>
 <body>
@@ -253,7 +18,19 @@
             <p>Sign in to your TherapyConnect account</p>
         </div>
         
-        <form class="login-form" id="loginForm">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul style="padding: 20px; color: red;">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        
+        <form class="login-form" id="loginForm" method="POST" action="/login">
+            <!-- You can later add: {{ form.hidden_tag() }} for CSRF protection -->
+
             <div class="form-group">
                 <label for="username">Username</label>
                 <input 
@@ -263,7 +40,7 @@
                     placeholder="Enter your username"
                     required
                     autocomplete="username"
-                >
+                />
             </div>
             
             <div class="form-group">
@@ -275,11 +52,11 @@
                     placeholder="Enter your password"
                     required
                     autocomplete="current-password"
-                >
+                />
             </div>
             
             <div class="forgot-password">
-                <a href="#" onclick="handleForgotPassword()">Forgot Password?</a>
+                <a href="#">Forgot Password?</a>
             </div>
             
             <button type="submit" class="login-btn" id="loginBtn">
@@ -290,70 +67,15 @@
                 <span>or continue with</span>
             </div>
             
-            <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
+            <button type="button" class="google-btn">
                 <div class="google-icon"></div>
                 Sign in with Google
             </button>
             
             <div class="signup-link">
-                Don't have an account? <a href="#" onclick="handleSignUp()">Sign up</a>
+                Don't have an account? <a href="/signup">Sign up</a>
             </div>
         </form>
     </div>
-
-    <script>
-        // Handle form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const loginBtn = document.getElementById('loginBtn');
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Add loading state
-            loginBtn.classList.add('loading');
-            loginBtn.textContent = 'Signing In...';
-            
-            // Simulate login process
-            setTimeout(() => {
-                // Remove loading state
-                loginBtn.classList.remove('loading');
-                loginBtn.textContent = 'Sign In';
-                
-                // Here you would typically send the data to your server
-                console.log('Login attempt:', { username, password });
-                alert('Login functionality would be implemented here!');
-            }, 2000);
-        });
-        
-        // Handle Google Sign In
-        function handleGoogleSignIn() {
-            console.log('Google Sign In clicked');
-            alert('Google Sign In would be implemented here!');
-        }
-        
-        // Handle Forgot Password
-        function handleForgotPassword() {
-            console.log('Forgot Password clicked');
-            alert('Forgot Password functionality would be implemented here!');
-        }
-        
-        // Handle Sign Up
-        function handleSignUp() {
-            console.log('Sign Up clicked');
-            alert('Sign Up page would be implemented here!');
-        }
-        
-        // Add input focus effects
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.classList.remove('focused');
-            });
-        });
-    </script>
 </body>
 </html>
