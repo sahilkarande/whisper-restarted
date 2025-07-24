@@ -1,0 +1,8 @@
+flask
+fastapi
+uvicorn
+sqlalchemy
+flask_sqlalchemy
+pymysql
+python-multipart
+werkzeug
