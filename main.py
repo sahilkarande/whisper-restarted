@@ -21,6 +21,6 @@ api.mount("/flask", WSGIMiddleware(app))
 
 if __name__ == "__main__":
     with app.app_context():
-        db.create_all()
+        db.create_all()  # ✅ Will create `users` table if not exists
     import uvicorn
     uvicorn.run(api, host="127.0.0.1", port=8000)
